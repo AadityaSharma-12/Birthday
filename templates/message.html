@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="letter-heading">
+    <h2>💌 Open Your Letter</h2>
+</div>
+
+<!-- Envelope closed state -->
+<div id="envelope-container" class="center-block">
+    <img id="envelope" src="{{ url_for('static', filename='images/envelope.png') }}" alt="Envelope">
+</div>
+
+<!-- Hidden paper (revealed after opening) -->
+<!-- FIX: Added style="display: none;" to guarantee hiding on page load -->
+<div id="paper-container" class="center-block hidden" style="display: none;">
+    <img id="paper-img" style="height:800px" src="{{ url_for('static', filename='images/paper.png') }}" alt="Paper">
+    <div id="paper-text-container">
+        <p id="paper-text" class="typewriter"></p>
+    </div>
+</div>
+
+<!-- Next button (kept hidden until typing complete) -->
+<!-- FIX: Added style="display: none;" to guarantee hiding on page load -->
+<a href="{{ url_for('gallery') }}" id="next-btn" class="next-btn hidden" style="display: none;">Next ➡️</a>
+
+<script src="{{ url_for('static', filename='js/typewriter.js') }}"></script>
+<script>
+// --- Updated Personalized Message ---
+const message = `To My Precious Dumbass,
+
+Happy Birthdayyy! Your old ass is already 22 damn. But that's okay it only makes you love me 22 times more 😉.
+This heartfelt message isn't very long because I had to make sure it fit into the letter u see in the bg, but its written using every single brain & heart cell I have.
+You are a very waow person and a very waow girlfriend. I seek every food and tea (ukwim) outing with you to every good place on earth.
+I wish all you random food cravings become true (obviously with me) at all the random timings.
+Again this is a preview message I will probably be in your dms with a long one @12.
+Once again Happyyy Birthdayy and I lov you.
+
+With all my love,
+As you like to call me,
+— Aadi Paadi`;
+// ------------------------------------
+
+// DOM refs
+const envelope = document.getElementById('envelope');
+const envelopeContainer = document.getElementById('envelope-container');
+const paperContainer = document.getElementById('paper-container');
+const paperTextEl = document.getElementById('paper-text');
+const nextBtn = document.getElementById('next-btn');
+
+envelope.addEventListener('click', () => {
+    // animate envelope flip
+    envelope.classList.add('open-envelope');
+
+    // after flip animation, hide envelope and show paper
+    setTimeout(() => {
+        envelopeContainer.style.display = 'none';
+
+        // Ensure inline style is removed or overridden when showing
+        paperContainer.style.display = '';
+        paperContainer.classList.remove('hidden');
+
+        // start typing into the PAPER element
+        // Reduced speed slightly to 35ms for smoother flow
+        typeWriterToPaper(message, "paper-text", 35, () => {
+            paperTextEl.classList.add('typing-done');
+            // reveal next button after typing finishes
+
+            // Ensure inline style is removed or overridden when showing
+            nextBtn.style.display = '';
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('fade-in');
+        });
+    }, 900); // match animation timing in CSS
+});
+</script>
+{% endblock %}

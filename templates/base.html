@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% set icon = favicon_emoji|default('💖') %}
+
+    <link rel="icon" 
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ icon }}</text></svg>">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/typewriter.css') }}">
+</head>
+<body>
+
+    <audio id="bg-music" loop>
+        <source src="{{ url_for('static', filename='music/ambient.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <nav class="navbar">
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('message') }}">Letter</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('surprise') }}">Surprise</a>
+    </div>
+    <button id="music-btn" class="music-btn">🎵</button>
+</nav>
+
+    {% block content %}{% endblock %}
+
+    <!-- music.js must load last to interact with the overlay -->
+    <script src="{{ url_for('static', filename='js/music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/celebration.js') }}"></script>
+</body>
+</html>

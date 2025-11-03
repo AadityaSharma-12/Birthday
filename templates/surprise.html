@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="letter-heading">
+    <h2>Time For The Gameee 🎁</h2>
+    <p>Click the correct gift box to reveal your actual present!</p>
+</div>
+
+<div class="gift-grid">
+    <!-- Gifts now use data-gift-id and rely on surprise.js listeners for clicks -->
+    <img src="{{ url_for('static', filename='images/gift1.png') }}" class="gift" data-gift-id="1">
+    <img src="{{ url_for('static', filename='images/gift2.png') }}" class="gift" data-gift-id="2">
+    <img src="{{ url_for('static', filename='images/gift3.png') }}" class="gift" data-gift-id="3">
+</div>
+
+<!-- Container for the temporary notification message (used by showMessage() in surprise.js) -->
+<div id="notification-box" class="notification hidden"></div>
+
+<div id="real-gift" class="hidden">
+    <img src="{{ url_for('static', filename='images/real_gift.jpg') }}" alt="Your Real Gift">
+    <p>Couldn't get you Toblerone but I hope this makes up for it.</p>
+</div>
+
+<script src="{{ url_for('static', filename='js/surprise.js') }}"></script>
+{% endblock %}

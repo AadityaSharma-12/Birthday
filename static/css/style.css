@@ -1,0 +1,448 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ===== BACKGROUND ===== */
+html, body {
+    min-height: 100%;
+    font-family: "Poppins", sans-serif;
+    color: #4a2c2a;
+    text-align: center;
+
+    /* Animated dreamy gradient */
+    background: linear-gradient(-45deg, #ffe1eb, #fff5f8, #ffd6e8, #fff0f6);
+    background-size: 400% 400%;
+    animation: bgFlow 15s ease infinite;
+}
+
+/* Gradient flow animation */
+@keyframes bgFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Transparent containers so gradient is visible throughout */
+.content, .hero, .gallery-container, .gift-section, .letter-container, nav, header, main, footer {
+    background: transparent !important;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: rgba(255, 182, 193, 0.85);
+    box-shadow: 0 2px 8px rgba(255, 105, 135, 0.3);
+    padding: 14px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    justify-content: center; /* center the whole content horizontally */
+    align-items: center;
+    position: relative;
+}
+
+/* Center the links container */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Keep links styled neatly */
+.nav-links a {
+    text-decoration: none;
+    color: #4a2c2a;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+    background-color: #ff4f81;
+    box-shadow: 0 4px 10px rgba(255, 105, 135, 0.4);
+}
+
+/* Music button (centered icon) */
+.music-btn {
+    position: absolute;
+    right: 40px;
+    width: 44px;               /* fixed square button */
+    height: 44px;
+    display: inline-flex;      /* use flex to center content */
+    align-items: center;       /* vertical centering */
+    justify-content: center;   /* horizontal centering */
+    gap: 0;
+    padding: 0;                /* remove default padding that offsets emoji */
+    background: linear-gradient(45deg, #ff85b3, #ff5c8d);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;           /* tune emoji size */
+    line-height: 1;            /* avoid extra vertical offset */
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 105, 135, 0.4);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* hover effect */
+.music-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 18px rgba(255, 105, 135, 0.35);
+}
+
+
+/* ===== HERO / HOME ===== */
+.hero {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* space between h1, p, and button */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #ff4f81;
+    text-shadow: 1px 1px 2px rgba(255, 140, 170, 0.5);
+    text-align: center;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #4a2c2a;
+    text-align: center;
+}
+
+.hero .btn {
+    display: inline-block;
+    /* margin-top removed since gap handles spacing */
+}
+
+
+/* ===== BUTTONS ===== */
+button, .btn {
+    background: linear-gradient(45deg, #ff85b3, #ff5c8d);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 22px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.home-btn {
+    background: linear-gradient(45deg, #ff85b3, #ff5c8d);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 22px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 140, 170, 0.4);
+}
+
+.letter-heading{
+    margin-top: 2rem;
+}
+/* ===== LETTER / MESSAGE PAGE (FIXED VERSION) ===== */
+#envelope-container {
+    text-align: center;
+    justify-content: center;
+    margin-top: 250px;
+}
+
+#envelope {
+    width: 400px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+}
+
+#envelope:hover {
+    transform: scale(1.05);
+}
+
+/* When opened, make it flip */
+.open-envelope {
+    transform: rotateX(180deg);
+    transition: transform 0.8s ease;
+}
+
+/* ===== PAPER CONTAINER ===== */
+#paper-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+#paper-img {
+    width: 700px;
+    max-width: 90%;
+    height: 1000px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* The text area OVER the paper */
+#paper-text-container {
+    position: absolute;
+    top: 10%;   /* adjust to fit the writing area of your paper image */
+    bottom: 10%;
+    left: 22%;
+    width: 58%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    pointer-events: none;
+}
+
+#paper-text {
+    white-space: pre-wrap;
+    font-family: "Dancing Script", cursive;
+    font-size: 1.2rem;
+    color: #4a2c2a;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+#paper-text.typing-done::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typewriter caret animation */
+#paper-text::after {
+    content: '|';
+    animation: caret 1s step-end infinite;
+}
+
+@keyframes caret {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ===== NEXT BUTTON ===== */
+.next-btn {
+    display: inline-block;
+    margin-top: 30px;
+    background: linear-gradient(45deg, #ff85b3, #ff5c8d);
+    color: white;
+    font-weight: 600;
+    border-radius: 25px;
+    padding: 10px 25px;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.next-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 105, 135, 0.4);
+}
+
+/* Hide + fade in */
+.hidden { display: none; }
+.fade-in {
+    animation: fadeIn 1.2s ease forwards;
+}
+
+
+/* ===== TYPEWRITER EFFECT (for paper text) ===== */
+.typewriter-text {
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 3px solid rgba(255, 105, 135, 0.75);
+    animation: caret 1s step-end infinite;
+}
+
+@keyframes caret {
+    from, to { border-color: transparent; }
+    50% { border-color: rgba(255, 105, 135, 0.75); }
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+    max-width: 900px;
+    margin: 60px auto; /* centers container horizontally */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    justify-items: center; /* center each image in its grid cell */
+    gap: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    max-width: 300px; /* optional, keeps images same size */
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+}
+
+
+/* ===== SURPRISE SECTION ===== */
+.gift-section {
+    margin: 80px auto;
+    max-width: 700px;
+    text-align: center;
+}
+
+.gift-grid {
+    display: flex;
+    justify-content: center; /* center all gifts horizontally */
+    flex-wrap: wrap;          /* allow wrapping on smaller screens */
+    gap: 30px;                /* space between gifts */
+    margin-top: 20rem;
+}
+
+.gift {
+    width: 250px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    filter: brightness(0.95) contrast(1.1); /* slightly darken edges to hide border */
+}
+
+
+.gift:hover {
+    transform: scale(1.1);
+}
+
+.notification {
+    margin: 25px auto;
+    font-weight: 600;
+    color: #ff4f81;
+    background-color: rgba(255, 240, 245, 0.8);
+    border-radius: 10px;
+    padding: 10px 20px;
+    max-width: 350px;
+    box-shadow: 0 2px 6px rgba(255, 182, 193, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Real Gift Image */
+#real-gift {
+    margin-top: 40px;
+}
+
+#real-gift img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+
+/* ===== FOOTER (Optional - not in base.html currently) ===== */
+footer {
+    margin-top: 60px;
+    padding: 20px;
+    color: #85525c;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* ===== START OVERLAY (For Autoplay Policy Fix) ===== */
+#start-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ff4f81;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 140, 170, 0.5);
+    transition: opacity 0.5s ease;
+}
+
+#start-overlay:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#start-overlay p {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #4a2c2a;
+}
+
+/* ===== CELEBRATION ANIMATIONS ===== */
+
+.balloon {
+  position: fixed;
+  bottom: -120px;
+  width: 40px;
+  height: 50px;
+  border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; /* Slightly uneven for natural look */
+  opacity: 0.9;
+  animation: floatUp 6s ease-in infinite;
+  z-index: 200;
+  box-shadow: inset -4px -8px rgba(0,0,0,0.1);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  opacity: 0.9;
+  z-index: 200;
+  animation: fallDown 4s linear infinite;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+
